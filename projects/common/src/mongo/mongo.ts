@@ -22,6 +22,7 @@ export class Mongo {
     async start(): Promise<void> {
         this.#client = await mongoose.connect(this.#uri, {
             bufferCommands: false,
+            autoIndex: true,
         })
         Log.debug("connected")
     }

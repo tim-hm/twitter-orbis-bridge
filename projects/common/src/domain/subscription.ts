@@ -7,6 +7,7 @@ import { TwitterUserId } from "./twitter-user-id"
 
 export const Subscription = z.object({
     _id: SubscriptionId,
+    active: z.boolean(),
     userId: TwitterUserId,
     lastSync: DateSchema.FromString,
 })

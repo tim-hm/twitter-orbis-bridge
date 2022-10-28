@@ -6,7 +6,7 @@ import helmet from "helmet"
 import morgan from "morgan"
 
 import { Config } from "@tob/backend/src/config"
-import { registerSubscribeContext } from "@tob/backend/src/domain/subscribe/register"
+import { registerSubscribeContext } from "@tob/backend/src/domain/bridge/register"
 import { errorHandler } from "@tob/common/src/express/error-handler"
 import { Mongo } from "@tob/common/src/mongo/mongo"
 import { getAppLogger } from "@tob/common/src/utils/log-utils"

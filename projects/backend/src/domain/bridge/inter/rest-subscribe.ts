@@ -1,24 +1,25 @@
 import { Request, Response } from "express"
-import { taskEither } from "fp-ts"
-import { identity, pipe } from "fp-ts/lib/function"
+import { task, taskEither } from "fp-ts"
+import { pipe } from "fp-ts/lib/function"
 
+import { ServiceBridge } from "@tob/backend/src/domain/bridge/mod"
+import { SubscribeResult } from "@tob/backend/src/domain/bridge/service/uc-pull"
 import { TwitterUserId } from "@tob/common/src/domain/twitter-user-id"
 import { ZodSchemaUtil } from "@tob/common/src/zod/zod-schema-util"
 
-import { ServiceSubscribe } from "../mod"
-
 export async function subscribeRestController(
     req: Request<{ id: string }>,
-    res: Response,
+    res: Response<SubscribeResult>,
 ): Promise<void> {
     const program = pipe(
         ZodSchemaUtil.parseToTaskEither(TwitterUserId, req.params.id),
-        taskEither.map(ServiceSubscribe.register),
+        taskEither.chainW(ServiceBridge.subscribe),
         taskEither.fold((error) => {
             throw error
-        }, identity),
+        }, task.of),
     )
 
     const result = await program()
-    res.send(result)
+
+    res.json(result).send()
 }
