@@ -7,6 +7,7 @@ import {
 export const Config = {
     App: getEnvVarOrDefault(EnvVarName.AppName, "app"),
     LoggingLevel: getEnvVarOrDefault(EnvVarName.LoggingLevel, "info"),
+    InfuraApiKey: getEnvVar(EnvVarName.InfuraApiKey),
     Name: getEnvVarOrDefault(EnvVarName.Env, "production"),
     Port: getEnvVarOrDefault(EnvVarName.Port, "8080"),
     TwitterApi: {

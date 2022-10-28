@@ -3,7 +3,7 @@ import { task, taskEither } from "fp-ts"
 import { pipe } from "fp-ts/lib/function"
 
 import { ServiceBridge } from "@tob/backend/src/domain/bridge/mod"
-import { SubscribeResult } from "@tob/backend/src/domain/bridge/service/uc-pull"
+import { SubscribeResult } from "@tob/backend/src/domain/bridge/service/uc-subscribe"
 import { TwitterUserId } from "@tob/common/src/domain/twitter-user-id"
 import { ZodSchemaUtil } from "@tob/common/src/zod/zod-schema-util"
 

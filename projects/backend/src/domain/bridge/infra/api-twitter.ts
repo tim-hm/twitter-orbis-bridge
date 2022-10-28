@@ -4,6 +4,7 @@ import { Client } from "twitter-api-sdk"
 
 import { Config } from "@tob/backend/src/config"
 import { Log } from "@tob/backend/src/main"
+import { Subscription } from "@tob/common/src/domain/subscription"
 import { TwitterUserId } from "@tob/common/src/domain/twitter-user-id"
 
 export type Params = {
@@ -21,7 +22,7 @@ export const ApiTwitter = {
     pull,
 }
 
-function pull(params: Params[]): TaskEither<Error, Tweet[]> {
+function pull(subscription: Subscription): TaskEither<Error, Tweet[]> {
     const client = new Client(Config.TwitterApi.Token)
 
     return pipe(
@@ -29,10 +30,10 @@ function pull(params: Params[]): TaskEither<Error, Tweet[]> {
             async () => {
                 Log.info("Running tweet sync")
 
-                const { user, since } = params[0]
+                const { userId, lastSync } = subscription
 
-                const tweets = await client.tweets.usersIdTweets(user, {
-                    start_time: since.toISOString(),
+                const tweets = await client.tweets.usersIdTweets(userId, {
+                    start_time: lastSync.toISOString(),
                 })
 
                 if (tweets.data) {

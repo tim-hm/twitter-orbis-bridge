@@ -7,10 +7,12 @@ import { TwitterUserId } from "@tob/common/src/domain/twitter-user-id"
 
 import { createOne } from "./repo-subscription-create-one"
 import { findActive } from "./repo-subscription-find-active"
+import { updateLastSync } from "./repo-subscription-update-last-sync"
 
 interface DocumentModel extends Model<Subscription> {
     createOne(id: TwitterUserId): TaskEither<Error, SubscriptionId>
     findActive(): TaskEither<Error, Subscription[]>
+    updateLastSync(id: SubscriptionId): TaskEither<Error, void>
 }
 
 const schema = new Schema<Subscription, DocumentModel>(
@@ -24,6 +26,7 @@ const schema = new Schema<Subscription, DocumentModel>(
         statics: {
             createOne,
             findActive,
+            updateLastSync,
         },
     },
 )

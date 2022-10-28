@@ -1,8 +1,7 @@
 import { App } from "@tob/backend/src/app/app"
 import { Path } from "@tob/backend/src/app/path"
 
-import { pullRestController } from "./inter/rest-pull"
-import { pushRestController } from "./inter/rest-push"
+import { runSyncRestController } from "./inter/rest-run-sync"
 import { subscribeRestController } from "./inter/rest-subscribe"
 
 export function registerSubscribeContext(app: App): void {
@@ -10,8 +9,5 @@ export function registerSubscribeContext(app: App): void {
     app.express.use(Path.subscribe, subscribeRestController)
 
     // eslint-disable-next-line @typescript-eslint/no-misused-promises
-    app.express.use(Path.pull, pullRestController)
-
-    // eslint-disable-next-line @typescript-eslint/no-misused-promises
-    app.express.use(Path.push, pushRestController)
+    app.express.use(Path.sync, runSyncRestController)
 }

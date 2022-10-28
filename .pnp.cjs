@@ -1763,6 +1763,21 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["@ethersproject/solidity", [\
+        ["npm:5.7.0", {\
+          "packageLocation": "./.yarn/cache/@ethersproject-solidity-npm-5.7.0-75baa4e133-9a02f37f80.zip/node_modules/@ethersproject/solidity/",\
+          "packageDependencies": [\
+            ["@ethersproject/solidity", "npm:5.7.0"],\
+            ["@ethersproject/bignumber", "npm:5.7.0"],\
+            ["@ethersproject/bytes", "npm:5.7.0"],\
+            ["@ethersproject/keccak256", "npm:5.7.0"],\
+            ["@ethersproject/logger", "npm:5.7.0"],\
+            ["@ethersproject/sha2", "npm:5.7.0"],\
+            ["@ethersproject/strings", "npm:5.7.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["@ethersproject/strings", [\
         ["npm:5.7.0", {\
           "packageLocation": "./.yarn/cache/@ethersproject-strings-npm-5.7.0-efcb671e56-5ff78693ae.zip/node_modules/@ethersproject/strings/",\
@@ -2033,10 +2048,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["@orbisclub/orbis-sdk", [\
-        ["npm:0.4.4-beta.6", {\
-          "packageLocation": "./.yarn/cache/@orbisclub-orbis-sdk-npm-0.4.4-beta.6-358f09d07f-90527ef34c.zip/node_modules/@orbisclub/orbis-sdk/",\
+        ["npm:0.4.4-beta.10", {\
+          "packageLocation": "./.yarn/cache/@orbisclub-orbis-sdk-npm-0.4.4-beta.10-d2a9ef4695-eacf275dd3.zip/node_modules/@orbisclub/orbis-sdk/",\
           "packageDependencies": [\
-            ["@orbisclub/orbis-sdk", "npm:0.4.4-beta.6"],\
+            ["@orbisclub/orbis-sdk", "npm:0.4.4-beta.10"],\
             ["@ceramicnetwork/blockchain-utils-linking", "npm:2.3.0"],\
             ["@ceramicnetwork/http-client", "npm:2.7.0"],\
             ["@ceramicnetwork/stream-tile", "npm:2.6.0"],\
@@ -2369,7 +2384,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./projects/backend/",\
           "packageDependencies": [\
             ["@tob/backend", "workspace:projects/backend"],\
-            ["@orbisclub/orbis-sdk", "npm:0.4.4-beta.6"],\
+            ["@orbisclub/orbis-sdk", "npm:0.4.4-beta.10"],\
             ["@tob/common", "workspace:projects/common"],\
             ["@types/compression", "npm:1.7.2"],\
             ["@types/express", "npm:4.17.14"],\
@@ -2378,6 +2393,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:18.11.7"],\
             ["compression", "npm:1.7.4"],\
             ["dotenv", "npm:16.0.3"],\
+            ["ethers", "npm:5.7.2"],\
             ["express", "npm:4.18.2"],\
             ["fp-ts", "npm:2.13.1"],\
             ["helmet", "npm:6.0.0"],\
@@ -5272,6 +5288,45 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/etag-npm-1.8.1-54a3b989d9-571aeb3dbe.zip/node_modules/etag/",\
           "packageDependencies": [\
             ["etag", "npm:1.8.1"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["ethers", [\
+        ["npm:5.7.2", {\
+          "packageLocation": "./.yarn/cache/ethers-npm-5.7.2-eba7d781ee-b7c08cf3e2.zip/node_modules/ethers/",\
+          "packageDependencies": [\
+            ["ethers", "npm:5.7.2"],\
+            ["@ethersproject/abi", "npm:5.7.0"],\
+            ["@ethersproject/abstract-provider", "npm:5.7.0"],\
+            ["@ethersproject/abstract-signer", "npm:5.7.0"],\
+            ["@ethersproject/address", "npm:5.7.0"],\
+            ["@ethersproject/base64", "npm:5.7.0"],\
+            ["@ethersproject/basex", "npm:5.7.0"],\
+            ["@ethersproject/bignumber", "npm:5.7.0"],\
+            ["@ethersproject/bytes", "npm:5.7.0"],\
+            ["@ethersproject/constants", "npm:5.7.0"],\
+            ["@ethersproject/contracts", "npm:5.7.0"],\
+            ["@ethersproject/hash", "npm:5.7.0"],\
+            ["@ethersproject/hdnode", "npm:5.7.0"],\
+            ["@ethersproject/json-wallets", "npm:5.7.0"],\
+            ["@ethersproject/keccak256", "npm:5.7.0"],\
+            ["@ethersproject/logger", "npm:5.7.0"],\
+            ["@ethersproject/networks", "npm:5.7.1"],\
+            ["@ethersproject/pbkdf2", "npm:5.7.0"],\
+            ["@ethersproject/properties", "npm:5.7.0"],\
+            ["@ethersproject/providers", "npm:5.7.2"],\
+            ["@ethersproject/random", "npm:5.7.0"],\
+            ["@ethersproject/rlp", "npm:5.7.0"],\
+            ["@ethersproject/sha2", "npm:5.7.0"],\
+            ["@ethersproject/signing-key", "npm:5.7.0"],\
+            ["@ethersproject/solidity", "npm:5.7.0"],\
+            ["@ethersproject/strings", "npm:5.7.0"],\
+            ["@ethersproject/transactions", "npm:5.7.0"],\
+            ["@ethersproject/units", "npm:5.7.0"],\
+            ["@ethersproject/wallet", "npm:5.7.0"],\
+            ["@ethersproject/web", "npm:5.7.1"],\
+            ["@ethersproject/wordlists", "npm:5.7.0"]\
           ],\
           "linkType": "HARD"\
         }]\
