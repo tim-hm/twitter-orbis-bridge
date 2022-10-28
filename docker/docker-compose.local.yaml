@@ -1,0 +1,14 @@
+version: "3.9"
+
+services:
+
+  mongo:
+    image: mongo:6
+    restart: always
+    ports:
+      - "15900:27017"
+    volumes:
+      - mongo_data:/data/db
+
+volumes:
+  mongo_data:

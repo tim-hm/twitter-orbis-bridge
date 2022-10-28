@@ -1,0 +1,31 @@
+{
+    "name": "@tob/backend",
+    "version": "0.0.0",
+    "packageManager": "yarn@3.2.4",
+    "license": "MIT",
+    "scripts": {
+        "start": "node --inspect -r ts-node/register -r dotenv/config src/main.ts"
+    },
+    "devDependencies": {
+        "@tob/common": "workspace:*",
+        "@types/compression": "^1.7.2",
+        "@types/express": "^4",
+        "@types/helmet": "^4.0.0",
+        "@types/morgan": "^1.9.3",
+        "@types/node": "^18.11.7",
+        "ts-node": "^10.9.1",
+        "type-fest": "^3.1.0",
+        "typescript": "^4.8.4"
+    },
+    "dependencies": {
+        "@orbisclub/orbis-sdk": "^0.4.4-beta.6",
+        "compression": "^1.7.4",
+        "dotenv": "^16.0.3",
+        "express": "^4.18.2",
+        "fp-ts": "^2.13.1",
+        "helmet": "^6.0.0",
+        "mongoose": "^6.7.0",
+        "morgan": "^1.10.0",
+        "twitter-api-sdk": "^1.2.1"
+    }
+}
