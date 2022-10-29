@@ -16,26 +16,54 @@ export const ApiOrbis = {
     push,
 }
 
-const TOB_STREAM_ID =
-    "kjzl6cwe1jw14b9lvf7vpuhlt32dmmf54587ta9xa8jrixfrk33iwy5b03sa7wz/kjzl6cwe1jw147lwtwid8rh3asrxqimgvmelxgoovm0agja2lo5s1mhqgk7klk9"
+
+const TOB_STREAM_ID = "kjzl6cwe1jw147lwtwid8rh3asrxqimgvmelxgoovm0agja2lo5s1mhqgk7klk9"
 
 function push(tweets: Tweet[]): TaskEither<Error, number> {
+    // @ts-ignore
+    global.localStorage = new LocalStorage('./scratch');
+    
     return tryCatch(
         async () => {
-            const provider = new ethers.providers.InfuraProvider(
-                "homestead",
-                Config.InfuraApiKey,
-            )
-            // const orbis = new Orbis()
-            // await orbis.connect(provider, false)
+            const wallet = ethers.Wallet.fromMnemonic(Config.HdWalletMnemonic)
+            const provider = new ethers.providers.InfuraProvider("homestead", Config.InfuraApiKey)
+            wallet.connect(provider)
 
-            // for (const tweet of tweets) {
-            //     await orbis.createPost({
-            //         body: tweet.body,
-            //         title: "From Twitter",
-            //         context: TOB_STREAM_ID,
-            //     })
-            // }
+            // @ts-ignore
+            provider.enable = async function(): Promise<string[]> {
+                const address = await wallet.getAddress()
+                return [address]
+            }
+            
+            // @ts-ignore
+            provider.request = async (args: {
+                method: string,
+                params: unknown[],
+            }) => {
+                const {method, params} = args
+                if(method === "personal_sign") {
+                    const message = params[0] as unknown as string
+                    const result = await wallet.signMessage(message)
+                    return result
+                } else {
+                    const result = await provider.send(args.method, args.params)
+                    return result
+                }
+            }
+
+            const orbis = new Orbis()
+            const res = await orbis.connect(provider, false)
+
+            if(res.error) throw res.error
+
+            for (const tweet of tweets) {
+                const res = await orbis.createPost({
+                    body: tweet.body,
+                    title: "From Twitter",
+                    context: TOB_STREAM_ID,
+                })
+                Log.info("%o", res)
+            }
 
             return tweets.length
         },
