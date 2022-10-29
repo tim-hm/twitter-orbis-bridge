@@ -1,9 +1,9 @@
-import { map, TaskEither } from "fp-ts/lib/TaskEither"
-import { pipe } from "fp-ts/lib/function"
+import { map, TaskEither } from "fp-ts/lib/TaskEither.js"
+import { pipe } from "fp-ts/lib/function.js"
 
-import { RepoSubscription } from "@tob/backend/src/domain/bridge/infra/repo-subscription"
-import { SubscriptionId } from "@tob/common/src/domain/subscription-id"
-import { TwitterUserId } from "@tob/common/src/domain/twitter-user-id"
+import { RepoSubscription } from "@tob/backend/src/domain/bridge/infra/repo-subscription.js"
+import { SubscriptionId } from "@tob/common/src/domain/subscription-id.js"
+import { TwitterUserId } from "@tob/common/src/domain/twitter-user-id.js"
 
 export type SubscribeResult = {
     subscription: SubscriptionId

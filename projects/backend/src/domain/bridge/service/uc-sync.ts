@@ -1,11 +1,11 @@
 import { array, taskEither } from "fp-ts"
-import { TaskEither } from "fp-ts/lib/TaskEither"
-import { pipe } from "fp-ts/lib/function"
+import { TaskEither } from "fp-ts/lib/TaskEither.js"
+import { pipe } from "fp-ts/lib/function.js"
 
-import { ApiOrbis } from "@tob/backend/src/domain/bridge/infra/api-orbis"
-import { ApiTwitter } from "@tob/backend/src/domain/bridge/infra/api-twitter"
-import { RepoSubscription } from "@tob/backend/src/domain/bridge/infra/repo-subscription"
-import { Subscription } from "@tob/common/src/domain/subscription"
+import { ApiOrbis } from "@tob/backend/src/domain/bridge/infra/api-orbis.js"
+import { ApiTwitter } from "@tob/backend/src/domain/bridge/infra/api-twitter.js"
+import { RepoSubscription } from "@tob/backend/src/domain/bridge/infra/repo-subscription.js"
+import { Subscription } from "@tob/common/src/domain/subscription.js"
 
 export type SyncResult = {
     pulled: number

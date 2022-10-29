@@ -1,14 +1,14 @@
 import { Request, Response } from "express"
 import { taskEither, task } from "fp-ts"
-import { pipe } from "fp-ts/lib/function"
+import { pipe } from "fp-ts/lib/function.js"
 
-import { ServiceBridge } from "@tob/backend/src/domain/bridge/mod"
-import { SyncResult } from "@tob/backend/src/domain/bridge/service/uc-sync"
+import { ServiceBridge } from "@tob/backend/src/domain/bridge/mod.js"
+import { SyncResult } from "@tob/backend/src/domain/bridge/service/uc-sync.js"
 
 export async function runSyncRestController(
     req: Request<{ id: string }>,
     res: Response<SyncResult>,
-): Promise<void> {
+    ): Promise<void> {
     const program = pipe(
         ServiceBridge.sync(),
         taskEither.fold((error) => {

@@ -1,11 +1,11 @@
-import { TaskEither, tryCatch } from "fp-ts/lib/TaskEither"
-import { pipe } from "fp-ts/lib/function"
+import { TaskEither, tryCatch } from "fp-ts/lib/TaskEither.js"
+import { pipe } from "fp-ts/lib/function.js"
 import { Client } from "twitter-api-sdk"
 
-import { Config } from "@tob/backend/src/config"
-import { Log } from "@tob/backend/src/main"
-import { Subscription } from "@tob/common/src/domain/subscription"
-import { TwitterUserId } from "@tob/common/src/domain/twitter-user-id"
+import { Config } from "@tob/backend/src/config.js"
+import { Log } from "@tob/backend/src/main.js"
+import { Subscription } from "@tob/common/src/domain/subscription.js"
+import { TwitterUserId } from "@tob/common/src/domain/twitter-user-id.js"
 
 export type Params = {
     user: TwitterUserId

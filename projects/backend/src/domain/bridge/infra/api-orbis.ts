@@ -1,10 +1,16 @@
-// import { Orbis } from "@orbisclub/orbis-sdk"
-import { ethers } from "ethers"
-import { TaskEither, tryCatch } from "fp-ts/lib/TaskEither"
+// @ts-ignore
+import { Orbis } from "@orbisclub/orbis-sdk"
+import { TaskEither, tryCatch } from "fp-ts/lib/TaskEither.js"
+import HDWalletProvider from "@truffle/hdwallet-provider"
+import Web3 from "web3"
+import ethers from "ethers"
 
-import { Config } from "@tob/backend/src/config"
+import { Config } from "@tob/backend/src/config.js"
 
-import { Tweet } from "./api-twitter"
+import { Tweet } from "./api-twitter.js"
+import { Log } from "@tob/backend/src/domain/bridge/log.js"
+// @ts-ignore
+import { LocalStorage } from "node-localstorage"
 
 export const ApiOrbis = {
     push,

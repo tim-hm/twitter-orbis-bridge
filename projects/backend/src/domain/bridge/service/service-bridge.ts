@@ -1,5 +1,5 @@
-import { subscribe } from "./uc-subscribe"
-import { sync } from "./uc-sync"
+import { subscribe } from "./uc-subscribe.js"
+import { sync } from "./uc-sync.js"
 
 export const ServiceBridge = {
     subscribe,

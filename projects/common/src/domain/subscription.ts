@@ -2,8 +2,8 @@ import { z } from "zod"
 
 import { DateSchema } from "@tob/common/src/zod/date-schema"
 
-import { SubscriptionId } from "./subscription-id"
-import { TwitterUserId } from "./twitter-user-id"
+import { SubscriptionId } from "./subscription-id.js"
+import { TwitterUserId } from "./twitter-user-id.js"
 
 export const Subscription = z.object({
     _id: SubscriptionId,

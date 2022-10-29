@@ -1,13 +1,13 @@
-import { TaskEither } from "fp-ts/lib/TaskEither"
+import { TaskEither } from "fp-ts/lib/TaskEither.js"
 import { model, Model, Schema } from "mongoose"
 
-import { type Subscription } from "@tob/common/src/domain/subscription"
-import { type SubscriptionId } from "@tob/common/src/domain/subscription-id"
-import { TwitterUserId } from "@tob/common/src/domain/twitter-user-id"
+import { type Subscription } from "@tob/common/src/domain/subscription.js"
+import { type SubscriptionId } from "@tob/common/src/domain/subscription-id.js"
+import { TwitterUserId } from "@tob/common/src/domain/twitter-user-id.js"
 
-import { createOne } from "./repo-subscription-create-one"
-import { findActive } from "./repo-subscription-find-active"
-import { updateLastSync } from "./repo-subscription-update-last-sync"
+import { createOne } from "./repo-subscription-create-one.js"
+import { findActive } from "./repo-subscription-find-active.js"
+import { updateLastSync } from "./repo-subscription-update-last-sync.js"
 
 interface DocumentModel extends Model<Subscription> {
     createOne(id: TwitterUserId): TaskEither<Error, SubscriptionId>
@@ -32,6 +32,6 @@ const schema = new Schema<Subscription, DocumentModel>(
 )
 
 export const RepoSubscription = model<Subscription, DocumentModel>(
-    "subscription",
+    "subscription.js",
     schema,
 )

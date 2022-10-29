@@ -1,7 +1,7 @@
 import mongoose, { Collection, Document } from "mongoose"
 
-import { getEnvVar, EnvVarName } from "@tob/common/src/utils/env-utils"
-import { getAppLogger } from "@tob/common/src/utils/log-utils"
+import { getEnvVar, EnvVarName } from "@tob/common/src/utils/env-utils.js"
+import { getAppLogger } from "@tob/common/src/utils/log-utils.js"
 
 const Log = getAppLogger("common.mongo")
 

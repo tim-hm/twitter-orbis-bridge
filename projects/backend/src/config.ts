@@ -2,10 +2,11 @@ import {
     getEnvVarOrDefault,
     getEnvVar,
     EnvVarName,
-} from "@tob/common/src/utils/env-utils"
+} from "@tob/common/src/utils/env-utils.js"
 
 export const Config = {
     App: getEnvVarOrDefault(EnvVarName.AppName, "app"),
+    HdWalletMnemonic: getEnvVar(EnvVarName.HdWalletMnemonic),
     LoggingLevel: getEnvVarOrDefault(EnvVarName.LoggingLevel, "info"),
     InfuraApiKey: getEnvVar(EnvVarName.InfuraApiKey),
     Name: getEnvVarOrDefault(EnvVarName.Env, "production"),

@@ -1,9 +1,9 @@
-import { TaskEither, tryCatch } from "fp-ts/lib/TaskEither"
+import { TaskEither, tryCatch } from "fp-ts/lib/TaskEither.js"
 
-import { SubscriptionId } from "@tob/common/src/domain/subscription-id"
-import { TwitterUserId } from "@tob/common/src/domain/twitter-user-id"
+import { SubscriptionId } from "@tob/common/src/domain/subscription-id.js"
+import { TwitterUserId } from "@tob/common/src/domain/twitter-user-id.js"
 
-import { RepoSubscription } from "./repo-subscription"
+import { RepoSubscription } from "./repo-subscription.js"
 
 export function createOne(
     userId: TwitterUserId,

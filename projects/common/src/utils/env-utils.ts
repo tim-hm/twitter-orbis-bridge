@@ -3,6 +3,7 @@ import { env } from "node:process"
 export const enum EnvVarName {
     AppName = "TOB_APP",
     Env = "NODE_ENV",
+    HdWalletMnemonic = "TOB_HD_WALLET_MNEMONIC",
     LoggingLevel = "TOB_LOGGING_LEVEL",
     InfuraApiKey = "TOB_INFRA_API_KEY",
     MongoUri = "TOB_MONGO_URI",

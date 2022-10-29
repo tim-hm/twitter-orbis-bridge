@@ -1,13 +1,13 @@
-import { magenta } from "@colors/colors"
+import colors from "@colors/colors"
 import * as winston from "winston"
 import { Logger } from "winston"
 
-import { EnvVarName, getEnvVar } from "./env-utils"
+import { EnvVarName, getEnvVar } from "./env-utils.js"
 
 const formatter = winston.format.printf((params) => {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const { level, message, label, timestamp } = params
-    const group = magenta(String(label))
+    const group = colors.magenta(String(label))
     return `${String(timestamp)} ${group} ${level}: ${String(message)}`
 })
 
