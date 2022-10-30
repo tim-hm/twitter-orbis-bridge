@@ -23,10 +23,8 @@ export function sync(): TaskEither<Error, SyncResult> {
                 subscriptions,
                 array.map((subscription) =>
                     pipe(
-                        // RepoSubscription.updateLastSync(subscription._id),
-                        // taskEither.chain(() => ApiTwitter.pull(subscription)),
-                        subscription,
-                        ApiTwitter.pull,
+                        RepoSubscription.updateLastSync(subscription._id),
+                        taskEither.chain(() => ApiTwitter.pull(subscription)),
                         taskEither.chain(ApiOrbis.push),
                     ),
                 ),
