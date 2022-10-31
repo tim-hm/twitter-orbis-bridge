@@ -1,0 +1,19 @@
+// ref https://github.com/tsconfig/bases
+// can't 'extends' when using yarn pnp and so replicated here
+{
+    "$schema": "https://json.schemastore.org/tsconfig",
+    "display": "Node 18",
+    "compilerOptions": {
+        "lib": ["es2022"],
+        "module": "ESNext",
+        "target": "es2022",
+        "strict": true,
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+        "moduleResolution": "node",
+        "allowSyntheticDefaultImports": true
+    },
+    "include": ["projects/**/*.ts"],
+    "exclude": ["**/node_modules", "**/.*/"]
+}
