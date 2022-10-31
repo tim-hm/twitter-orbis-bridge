@@ -1,1 +1,1 @@
-export { ServiceBridge } from "./service/service-bridge.js"
+export { ServiceBridge } from "./service/service-bridge"

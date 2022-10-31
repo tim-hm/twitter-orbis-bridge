@@ -1,11 +1,11 @@
-import { TaskEither, tryCatch } from "fp-ts/lib/TaskEither.js"
-import { pipe } from "fp-ts/lib/function.js"
+import { TaskEither, tryCatch } from "fp-ts/lib/TaskEither"
+import { pipe } from "fp-ts/lib/function"
 import { Client } from "twitter-api-sdk"
 
-import { Config } from "@tob/backend/src/config.js"
-import { Log } from "@tob/backend/src/domain/bridge/log.js"
-import { Subscription } from "@tob/common/src/domain/subscription.js"
-import { TwitterUserId } from "@tob/common/src/domain/twitter-user-id.js"
+import { Config } from "@tob/backend/src/config"
+import { Log } from "@tob/backend/src/domain/bridge/log"
+import { ProfileSubscription } from "@tob/common/src/domain/profile-subscription"
+import { TwitterUserId } from "@tob/common/src/domain/twitter-user-id"
 
 export type Params = {
     user: TwitterUserId
@@ -19,10 +19,12 @@ export type Tweet = {
 }
 
 export const ApiTwitter = {
-    pull,
+    pullProfile,
 }
 
-function pull(subscription: Subscription): TaskEither<Error, Tweet[]> {
+function pullProfile(
+    subscription: ProfileSubscription,
+): TaskEither<Error, Tweet[]> {
     const client = new Client(Config.TwitterApi.Token)
 
     return pipe(

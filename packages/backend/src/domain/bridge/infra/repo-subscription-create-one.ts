@@ -1,16 +1,19 @@
-import { TaskEither, tryCatch } from "fp-ts/lib/TaskEither.js"
+import { TaskEither, tryCatch } from "fp-ts/lib/TaskEither"
 
-import { SubscriptionId } from "@tob/common/src/domain/subscription-id.js"
-import { TwitterUserId } from "@tob/common/src/domain/twitter-user-id.js"
+import { RepoProfileSubscription } from "./repo-profile-subscription"
 
-import { RepoSubscription } from "./repo-subscription.js"
+import { CreateMirrorProfileRequest } from "@tob/backend/src/domain/bridge/service/uc-mirror-profile"
+import { ProfileSubscriptionId } from "@tob/common/src/domain/profile-subscription-id"
 
 export function createOne(
-    userId: TwitterUserId,
-): TaskEither<Error, SubscriptionId> {
+    params: CreateMirrorProfileRequest,
+): TaskEither<Error, ProfileSubscriptionId> {
     return tryCatch(
         async () => {
-            const result = await RepoSubscription.create({ userId })
+            const result = await RepoProfileSubscription.create({
+                userId: params.userId,
+                username: params.username,
+            })
             return result._id
         },
         (cause: unknown) => new Error("createOne", { cause }),

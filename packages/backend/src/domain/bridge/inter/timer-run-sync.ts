@@ -1,12 +1,12 @@
-import secondsToMilliseconds from "date-fns/secondsToMilliseconds/index.js"
-import { none, map, Option, some } from "fp-ts/lib/Option.js"
-import { of } from "fp-ts/lib/Task.js"
-import { fold } from "fp-ts/lib/TaskEither.js"
-import { pipe } from "fp-ts/lib/function.js"
+import secondsToMilliseconds from "date-fns/secondsToMilliseconds/index"
+import { none, map, Option, some } from "fp-ts/lib/Option"
+import { of } from "fp-ts/lib/Task"
+import { fold } from "fp-ts/lib/TaskEither"
+import { pipe } from "fp-ts/lib/function"
 
-import { Log } from "@tob/backend/src/domain/bridge/log.js"
-import { ServiceBridge } from "@tob/backend/src/domain/bridge/mod.js"
-import { Constant } from "@tob/common/src/constant/constant.js"
+import { Log } from "@tob/backend/src/domain/bridge/log"
+import { ServiceBridge } from "@tob/backend/src/domain/bridge/mod"
+import { Constant } from "@tob/common/src/constant/constant"
 
 let timerOpt: Option<NodeJS.Timer>
 let running = false

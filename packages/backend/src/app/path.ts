@@ -1,4 +1,6 @@
 export const Path = {
-    subscribe: "/subscribe/:id",
-    sync: "/sync",
+    mirrorProfile: "/mirror/profile",
+    mirrorHashtag: "/mirror/hashtag",
+    syncToggle: "/sync/toggle",
+    syncForce: "/sync/force",
 }

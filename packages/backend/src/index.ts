@@ -1,7 +1,7 @@
-import { getAppLogger } from "@tob/common/src/utils/log-utils.js"
+import { getAppLogger } from "@tob/common/src/utils/log-utils"
 
-import { App } from "./app/app.js"
-import { Config } from "./config.js"
+import { App } from "./app/app"
+import { Config } from "./config"
 
 export const Log = getAppLogger("main")
 

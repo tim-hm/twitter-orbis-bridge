@@ -1,11 +1,11 @@
 import { array, taskEither } from "fp-ts"
-import { TaskEither } from "fp-ts/lib/TaskEither.js"
-import { pipe } from "fp-ts/lib/function.js"
+import { TaskEither } from "fp-ts/lib/TaskEither"
+import { pipe } from "fp-ts/lib/function"
 
-import { ApiOrbis } from "@tob/backend/src/domain/bridge/infra/api-orbis.js"
-import { ApiTwitter } from "@tob/backend/src/domain/bridge/infra/api-twitter.js"
-import { RepoSubscription } from "@tob/backend/src/domain/bridge/infra/repo-subscription.js"
-import { Subscription } from "@tob/common/src/domain/subscription.js"
+import { ApiOrbis } from "@tob/backend/src/domain/bridge/infra/api-orbis"
+import { ApiTwitter } from "@tob/backend/src/domain/bridge/infra/api-twitter"
+import { RepoProfileSubscription } from "@tob/backend/src/domain/bridge/infra/repo-profile-subscription"
+import { ProfileSubscription } from "@tob/common/src/domain/profile-subscription"
 
 export type SyncResult = {
     pulled: number
@@ -17,14 +17,15 @@ export type SyncResult = {
 // 2 - Running in parallel without batches would consume too many resources.
 export function sync(): TaskEither<Error, SyncResult> {
     return pipe(
-        RepoSubscription.findActive(),
-        taskEither.chain((subscriptions: Subscription[]) => {
+        RepoProfileSubscription.findActive(),
+        taskEither.chain((subscriptions: ProfileSubscription[]) => {
             return pipe(
                 subscriptions,
                 array.map((subscription) =>
                     pipe(
-                        RepoSubscription.updateLastSync(subscription._id),
-                        taskEither.chain(() => ApiTwitter.pull(subscription)),
+                        // RepoSubscription.updateLastSync(subscription._id),
+                        // taskEither.chain(() => ApiTwitter.pull(subscription)),
+                        ApiTwitter.pullProfile(subscription),
                         taskEither.chain(ApiOrbis.push),
                     ),
                 ),

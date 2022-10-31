@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express"
 
-import { Log } from "@tob/common/src/utils/log-utils.js"
+import { Log } from "@tob/common/src/utils/log-utils"
 
 export function errorHandler(
     err: unknown,

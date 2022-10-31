@@ -1,15 +1,15 @@
-import { map, TaskEither, tryCatch } from "fp-ts/lib/TaskEither.js"
-import { constVoid, pipe } from "fp-ts/lib/function.js"
+import { map, TaskEither, tryCatch } from "fp-ts/lib/TaskEither"
+import { constVoid, pipe } from "fp-ts/lib/function"
 
-import { SubscriptionId } from "@tob/common/src/domain/subscription-id.js"
+import { RepoProfileSubscription } from "./repo-profile-subscription"
 
-import { RepoSubscription } from "./repo-subscription.js"
+import { SubscriptionId } from "@tob/common/src/domain/profile-subscription-id"
 
 export function updateLastSync(_id: SubscriptionId): TaskEither<Error, void> {
     return pipe(
         tryCatch(
             async () =>
-                await RepoSubscription.findByIdAndUpdate(_id, {
+                await RepoProfileSubscription.findByIdAndUpdate(_id, {
                     lastSync: new Date(),
                 }),
             (cause: unknown) => new Error("findActive", { cause }),

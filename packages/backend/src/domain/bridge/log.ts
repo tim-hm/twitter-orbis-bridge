@@ -1,3 +1,3 @@
-import { getAppLogger } from "@tob/common/src/utils/log-utils.js"
+import { getAppLogger } from "@tob/common/src/utils/log-utils"
 
 export const Log = getAppLogger("domain.subscribe")

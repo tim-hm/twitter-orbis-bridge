@@ -2,7 +2,7 @@ import colors from "@colors/colors"
 import * as winston from "winston"
 import { Logger } from "winston"
 
-import { EnvVarName, getEnvVar } from "./env-utils.js"
+import { EnvVarName, getEnvVar } from "./env-utils"
 
 const formatter = winston.format.printf((params) => {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment

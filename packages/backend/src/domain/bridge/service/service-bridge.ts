@@ -1,7 +1,7 @@
-import { subscribe } from "./uc-subscribe.js"
-import { sync } from "./uc-sync.js"
+import { mirrorProfile } from "./uc-mirror-profile"
+import { sync } from "./uc-sync"
 
 export const ServiceBridge = {
-    subscribe,
+    mirrorProfile,
     sync,
 }
