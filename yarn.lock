@@ -2389,6 +2389,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@tob/backend@workspace:packages/backend"
   dependencies:
+    "@babel/eslint-parser": ^7.19.1
     "@orbisclub/orbis-sdk": ^0.4.4-beta.10
     "@tob/common": "workspace:*"
     "@truffle/hdwallet-provider": ^2.1.0

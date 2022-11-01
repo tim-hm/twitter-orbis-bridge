@@ -1,11 +1,17 @@
 {
-    "extends": "./tsconfig.node18.json",
-    "exclude": ["node_modules", "**/*/dist"],
-    "compilerOptions": {
-        "noEmit": true,
-        "baseUrl": ".",
-        "paths": {
-            "@tob/*": ["./packages/*"]
-        }
+  "extends": "@tsconfig/node18/tsconfig.json",
+  "exclude": [
+    "node_modules",
+    "**/*/dist"
+  ],
+  "compilerOptions": {
+    "noEmit": true,
+    "sourceMap": true,
+    "baseUrl": ".",
+    "paths": {
+      "@tob/*": [
+        "./packages/*"
+      ]
     }
+  }
 }

@@ -7,11 +7,11 @@
         "start": "node --enable-source-maps --inspect -r dotenv/config ./dist/index.js dotenv_config_path=.env",
         "build": "esbuild ./src/index.js --sourcemap --bundle --platform=node --outfile=dist/index.js",
         "dev": "concurrently 'yarn start:watch' 'yarn build:watch'",
-        "start:watch": "nodemon --inspect -r dotenv/config ./dist/index.js dotenv_config_path=.env",
+        "start:watch": "nodemon --delay 5 --enable-source-maps --inspect -r dotenv/config ./dist/index.js dotenv_config_path=.env",
         "build:watch": "yarn build --watch",
         "typecheck": "tsc",
-        "link": "eslint .",
-        "link:fix": "eslint . --fix"
+        "lint": "eslint .",
+        "lint:fix": "eslint . --fix"
     },
     "devDependencies": {
         "@types/compression": "^1.7.2",
