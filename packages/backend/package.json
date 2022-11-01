@@ -4,7 +4,7 @@
     "packageManager": "yarn@3.2.4",
     "license": "MIT",
     "scripts": {
-        "start": "node --inspect -r dotenv/config ./dist/index.js dotenv_config_path=.env",
+        "start": "node --enable-source-maps --inspect -r dotenv/config ./dist/index.js dotenv_config_path=.env",
         "build": "esbuild ./src/index.js --sourcemap --bundle --platform=node --outfile=dist/index.js",
         "dev": "concurrently 'yarn start:watch' 'yarn build:watch'",
         "start:watch": "nodemon --inspect -r dotenv/config ./dist/index.js dotenv_config_path=.env",
