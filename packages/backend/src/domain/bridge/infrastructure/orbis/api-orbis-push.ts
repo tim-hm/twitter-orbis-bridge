@@ -30,7 +30,11 @@ export function push(
 
 function tweetToPost(tweet: Tweet): CreatePostContent {
     return {
-        body: tweet.body,
+        body: `${tweet.text}
+---
+created: ${tweet.created.toISOString()}
+source: https://twitter.com/${tweet.username}/status/${tweet.id}
+`,
         context: Constant.OrbisChannelId,
     }
 }

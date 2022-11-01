@@ -10,6 +10,7 @@ import {
 
 import { createOne } from "./repo-subscription-create-one"
 import { findActive } from "./repo-subscription-find-active"
+import { findAndWrap } from "./repo-subscription-find-and-wrap"
 import { updateLastSync } from "./repo-subscription-update-last-sync"
 
 interface DocumentModel extends Model<ProfileSubscription> {
@@ -18,6 +19,9 @@ interface DocumentModel extends Model<ProfileSubscription> {
     ): TaskEither<Error, ProfileSubscription>
     findActive(): TaskEither<Error, ProfileSubscription[]>
     updateLastSync(id: ProfileSubscriptionId): TaskEither<Error, void>
+    findAndWrap(
+        id: ProfileSubscriptionId,
+    ): TaskEither<Error, ProfileSubscription>
 }
 
 const schema = new Schema<ProfileSubscription, DocumentModel>(
@@ -33,6 +37,7 @@ const schema = new Schema<ProfileSubscription, DocumentModel>(
         statics: {
             createOne,
             findActive,
+            findAndWrap,
             updateLastSync,
         },
     },

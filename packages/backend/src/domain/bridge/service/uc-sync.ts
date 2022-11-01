@@ -10,8 +10,8 @@ import { RepoProfileSubscription } from "@tob/backend/src/domain/bridge/infrastr
 import { ProfileSubscription } from "@tob/backend/src/domain/common"
 
 export type SyncResult = {
-    pulled: number
-    pushed: number
+    subscriptions: number
+    tweets: number
 }
 
 // This is a naive implementation because:
@@ -20,32 +20,29 @@ export type SyncResult = {
 export function sync(): TaskEither<Error, SyncResult> {
     return pipe(
         RepoProfileSubscription.findActive(),
-        taskEither.chain((subscriptions: ProfileSubscription[]) => {
-            return pipe(
+        taskEither.chain((subscriptions: ProfileSubscription[]) =>
+            pipe(
                 subscriptions,
                 array.map((subscription) =>
                     pipe(
-                        // RepoSubscription.updateLastSync(subscription._id),
-                        // taskEither.chain(() => ApiTwitter.pull(subscription)),
-                        ApiTwitter.profileFetch(subscription),
-                        taskEither.chain((tweets) => {
-                            const key = subscription.privateKey
-                                .split(",")
-                                .map((e) => Number(e))
-                            const uint = Uint8Array.of(...key)
-
-                            return ApiOrbis.push(uint, tweets)
-                        }),
+                        // This should be after successful sync
+                        RepoProfileSubscription.updateLastSync(
+                            subscription._id,
+                        ),
+                        taskEither.chain(() =>
+                            ApiTwitter.profileTweetsFetch(subscription),
+                        ),
+                        taskEither.chain((tweets) =>
+                            ApiOrbis.push(subscription.privateKey, tweets),
+                        ),
                     ),
                 ),
                 taskEither.sequenceSeqArray,
-            )
-        }),
-        // tweets[0] = an array of tweets for a subscription
-        // this isn't optimal so ill refactor later
-        taskEither.map((tweets) => ({
-            pulled: tweets.length,
-            pushed: tweets.length,
-        })),
+                taskEither.map((tweets) => ({
+                    subscriptions: subscriptions.length,
+                    tweets: tweets.length,
+                })),
+            ),
+        ),
     )
 }

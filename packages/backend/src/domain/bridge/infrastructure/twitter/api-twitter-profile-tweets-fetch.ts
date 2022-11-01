@@ -4,38 +4,59 @@ import { Client } from "twitter-api-sdk"
 
 import { Config } from "@tob/backend/src/config"
 import { Log } from "@tob/backend/src/domain/bridge/log"
-import { ProfileSubscription } from "@tob/backend/src/domain/common"
-import { Tweet } from "@tob/backend/src/domain/common"
+import {
+    ProfileSubscription,
+    Tweet,
+    TwitterUsername,
+} from "@tob/backend/src/domain/common"
 
 export function profileTweetsFetch(
     subscription: ProfileSubscription,
 ): TaskEither<Error, Tweet[]> {
-    const client = new Client(Config.TwitterApi.Token)
-
     return pipe(
         tryCatch(
             async () => {
-                Log.info("Running tweet sync")
+                const client = new Client(Config.TwitterApi.Token)
+                const { userId, lastSync, username } = subscription
+                Log.debug(
+                    "Fetching tweets for %s since %s",
+                    username,
+                    lastSync.toISOString(),
+                )
 
-                const { userId, lastSync } = subscription
-
-                const tweets = await client.tweets.usersIdTweets(userId, {
+                const response = await client.tweets.usersIdTweets(userId, {
                     start_time: lastSync.toISOString(),
+                    max_results: 100,
+                    "tweet.fields": ["created_at"],
                 })
 
-                if (tweets.data) {
-                    return tweets.data.map((tweet) => {
-                        return {
-                            user: tweet.author_id ?? "",
-                            body: tweet.text ?? "",
-                            created: tweet.created_at ?? "",
-                        } as Tweet
-                    })
+                if (response.errors) throw response.errors
+
+                const { data } = response
+
+                Log.debug("Got %s tweets for %s", data?.length ?? 0, username)
+
+                if (data) {
+                    return data.map((raw) => parseTweet(username, raw))
                 } else {
                     return []
                 }
             },
-            (cause) => new Error("pullTweets", { cause }),
+            (cause) => new Error("profileTweetsFetch", { cause }),
         ),
     )
+}
+
+function parseTweet(
+    username: TwitterUsername,
+    data: Record<string, unknown>,
+): Tweet {
+    const raw = {
+        id: data["id"],
+        username,
+        text: data["text"],
+        created: data["created_at"],
+    }
+
+    return Tweet.parse(raw)
 }

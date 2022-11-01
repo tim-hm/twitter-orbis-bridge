@@ -1,42 +1,44 @@
 import { TaskEither, tryCatch } from "fp-ts/lib/TaskEither"
 import { pipe } from "fp-ts/lib/function"
-import { Client } from "twitter-api-sdk"
 
-import { Config } from "@tob/backend/src/config"
 import { Log } from "@tob/backend/src/domain/bridge/log"
-import { ProfileSubscription } from "@tob/backend/src/domain/common"
-import { TwitterUserId, Tweet } from "@tob/backend/src/domain/common"
+import {
+    ProfileSubscription,
+    TwitterProfile,
+} from "@tob/backend/src/domain/common"
+import { TwitterWrapper } from "@tob/backend/src/utils/twitter-wrapper"
 
 export function profileFetch(
     subscription: ProfileSubscription,
-): TaskEither<Error, Tweet[]> {
-    const client = new Client(Config.TwitterApi.Token)
-    throw ""
+): TaskEither<Error, TwitterProfile> {
+    return pipe(
+        tryCatch(
+            async () => {
+                const { userId, username } = subscription
+                Log.info("Fetching profile for %s %s", userId, username)
 
-    // return pipe(
-    //     tryCatch(
-    //         async () => {
-    //             Log.info("Running tweet sync")
+                const client = TwitterWrapper.createClient()
+                const response = await client.users.findUserById(userId, {
+                    "user.fields": [
+                        "username",
+                        "profile_image_url",
+                        "created_at",
+                    ],
+                })
 
-    //             const { userId, lastSync } = subscription
+                if (response.errors) throw response.errors
 
-    //             const tweets = await client.tweets.usersIdTweets(userId, {
-    //                 start_time: lastSync.toISOString(),
-    //             })
+                const { data } = response
+                const raw = {
+                    id: userId,
+                    created: data?.created_at,
+                    username: data?.username,
+                    profileImage: data?.profile_image_url,
+                }
 
-    //             if (tweets.data) {
-    //                 return tweets.data.map((tweet) => {
-    //                     return {
-    //                         user: tweet.author_id ?? "",
-    //                         body: tweet.text ?? "",
-    //                         created: tweet.created_at ?? "",
-    //                     }
-    //                 })
-    //             } else {
-    //                 return []
-    //             }
-    //         },
-    //         (cause) => new Error("pullTweets", { cause }),
-    //     ),
-    // )
+                return TwitterProfile.parse(raw)
+            },
+            (cause) => new Error("profileFetch", { cause }),
+        ),
+    )
 }
