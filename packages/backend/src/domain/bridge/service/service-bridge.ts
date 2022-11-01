@@ -1,7 +1,9 @@
-import { mirrorProfile } from "./uc-mirror-profile"
+import { profileMirror } from "./uc-profile-mirror"
+import { profileRefresh } from "./uc-profile-refresh"
 import { sync } from "./uc-sync"
 
 export const ServiceBridge = {
-    mirrorProfile,
+    profileRefresh,
+    profileMirror,
     sync,
 }

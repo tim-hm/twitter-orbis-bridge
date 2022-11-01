@@ -1,8 +1,4 @@
-import {
-    getEnvVarOrDefault,
-    getEnvVar,
-    EnvVarName,
-} from "@tob/common/src/utils/env-utils"
+import { getEnvVarOrDefault, getEnvVar, EnvVarName } from "./utils/env-utils"
 
 export const Config = {
     App: getEnvVarOrDefault(EnvVarName.AppName, "app"),

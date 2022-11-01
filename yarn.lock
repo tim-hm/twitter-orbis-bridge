@@ -844,20 +844,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/eslint-parser@npm:^7.19.1":
-  version: 7.19.1
-  resolution: "@babel/eslint-parser@npm:7.19.1"
-  dependencies:
-    "@nicolo-ribaudo/eslint-scope-5-internals": 5.1.1-v1
-    eslint-visitor-keys: ^2.1.0
-    semver: ^6.3.0
-  peerDependencies:
-    "@babel/core": ">=7.11.0"
-    eslint: ^7.5.0 || ^8.0.0
-  checksum: 6d5360f62f25ed097250657deb1bc4c4f51a5f5f2fe456e98cda13727753fdf7a11a109b4cfa03ef0dd6ced3beaeb703b76193c1141e29434d1f91f1bac0517d
-  languageName: node
-  linkType: hard
-
 "@babel/helper-compilation-targets@npm:^7.17.7":
   version: 7.20.0
   resolution: "@babel/helper-compilation-targets@npm:7.20.0"
@@ -1953,15 +1939,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nicolo-ribaudo/eslint-scope-5-internals@npm:5.1.1-v1":
-  version: 5.1.1-v1
-  resolution: "@nicolo-ribaudo/eslint-scope-5-internals@npm:5.1.1-v1"
-  dependencies:
-    eslint-scope: 5.1.1
-  checksum: f2e3b2d6a6e2d9f163ca22105910c9f850dc4897af0aea3ef0a5886b63d8e1ba6505b71c99cb78a3bba24a09557d601eb21c8dede3f3213753fcfef364eb0e57
-  languageName: node
-  linkType: hard
-
 "@noble/hashes@npm:1.1.2":
   version: 1.1.2
   resolution: "@noble/hashes@npm:1.1.2"
@@ -2389,7 +2366,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@tob/backend@workspace:packages/backend"
   dependencies:
-    "@babel/eslint-parser": ^7.19.1
     "@orbisclub/orbis-sdk": ^0.4.4-beta.10
     "@tob/common": "workspace:*"
     "@truffle/hdwallet-provider": ^2.1.0
@@ -2426,15 +2402,18 @@ __metadata:
   resolution: "@tob/common@workspace:packages/common"
   dependencies:
     "@colors/colors": ^1.5.0
+    "@orbisclub/orbis-sdk": ^0.4.4-beta.11
     "@types/eslint": ^8
     "@types/express": ^4
     "@types/node": ^18.11.7
     date-fns: ^2.29.3
     dotenv: ^16.0.3
     eslint: ^8.26.0
+    ethers: ^5.7.2
     express: ^4.18.2
     fp-ts: ^2.13.1
     mongoose: ^6.7.0
+    store2: ^2.14.2
     type-fest: ^3.1.0
     typescript: ^4.8.4
     winston: ^3.8.2
@@ -2446,7 +2425,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@tob/eslint-config@workspace:packages/eslint-config"
   dependencies:
-    "@babel/eslint-parser": ^7.19.1
     "@types/prettier": ^2.7.1
     "@typescript-eslint/eslint-plugin": ^5.41.0
     "@typescript-eslint/parser": ^5.41.0
@@ -5734,7 +5712,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-scope@npm:5.1.1, eslint-scope@npm:^5.1.1":
+"eslint-scope@npm:^5.1.1":
   version: 5.1.1
   resolution: "eslint-scope@npm:5.1.1"
   dependencies:
@@ -5765,7 +5743,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-visitor-keys@npm:^2.0.0, eslint-visitor-keys@npm:^2.1.0":
+"eslint-visitor-keys@npm:^2.0.0":
   version: 2.1.0
   resolution: "eslint-visitor-keys@npm:2.1.0"
   checksum: e3081d7dd2611a35f0388bbdc2f5da60b3a3c5b8b6e928daffff7391146b434d691577aa95064c8b7faad0b8a680266bcda0a42439c18c717b80e6718d7e267d

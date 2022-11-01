@@ -7,11 +7,10 @@ import morgan from "morgan"
 
 import { Config } from "@tob/backend/src/config"
 import { registerSubscribeContext } from "@tob/backend/src/domain/bridge/register"
-import { errorHandler } from "@tob/common/src/express/error-handler"
-import { Mongo } from "@tob/common/src/mongo/mongo"
-import { getAppLogger } from "@tob/common/src/utils/log-utils"
+import { errorHandler } from "@tob/backend/src/utils/express/error-handler"
+import { Mongo } from "@tob/backend/src/utils/mongo"
 
-const Log = getAppLogger("app")
+import { Log } from "./log"
 
 export class App {
     #mongo = Mongo.get()

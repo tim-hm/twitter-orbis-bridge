@@ -1,17 +1,15 @@
-import { mirrorProfileRestController } from "./inter/rest-mirror-profile"
-import { toggleSyncRestController } from "./inter/rest-toggle-sync"
-
 import { App } from "@tob/backend/src/app/app"
 import { Path } from "@tob/backend/src/app/path"
-import { forceSyncRestController } from "@tob/backend/src/domain/bridge/inter/rest-force-sync"
+import { forceSyncRestController } from "@tob/backend/src/domain/bridge/interface/rest-sync-force"
+
+import { profileMirrorRestController } from "./interface/rest-profile-mirror"
+import { profileRefreshRestController } from "./interface/rest-profile-refresh"
+import { toggleSyncRestController } from "./interface/rest-toggle-sync"
 
 export function registerSubscribeContext(app: App): void {
-    // eslint-disable-next-line @typescript-eslint/no-misused-promises
-    app.express.post(Path.mirrorProfile, mirrorProfileRestController)
+    app.express.post(Path.profileMirror, profileMirrorRestController)
+    app.express.use(Path.profileRefresh, profileRefreshRestController)
 
-    // eslint-disable-next-line @typescript-eslint/no-misused-promises
     app.express.use(Path.syncToggle, toggleSyncRestController)
-
-    // eslint-disable-next-line @typescript-eslint/no-misused-promises
     app.express.use(Path.syncForce, forceSyncRestController)
 }

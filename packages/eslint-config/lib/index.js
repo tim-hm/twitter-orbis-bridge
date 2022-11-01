@@ -20,6 +20,14 @@ module.exports = {
                         alphabetize: {
                             order: "asc",
                         },
+                        groups: [
+                            "builtin",
+                            "external",
+                            "internal",
+                            "parent",
+                            "sibling",
+                            "index",
+                        ],
                     },
                 ],
                 "eol-last": ["warn"],
