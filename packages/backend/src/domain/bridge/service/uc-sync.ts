@@ -40,7 +40,7 @@ export function sync(): TaskEither<Error, SyncResult> {
                 taskEither.sequenceSeqArray,
                 taskEither.map((tweets) => ({
                     subscriptions: subscriptions.length,
-                    tweets: tweets.length,
+                    tweets: tweets.reduce((acc, howMany) => acc + howMany, 0),
                 })),
             ),
         ),
