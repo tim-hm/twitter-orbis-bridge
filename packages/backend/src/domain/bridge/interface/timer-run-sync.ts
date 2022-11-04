@@ -1,8 +1,7 @@
 import secondsToMilliseconds from "date-fns/secondsToMilliseconds/index"
-import { none, map, Option, some } from "fp-ts/lib/Option"
-import { of } from "fp-ts/lib/Task"
-import { fold } from "fp-ts/lib/TaskEither"
-import { pipe } from "fp-ts/lib/function"
+import { task, taskEither } from "fp-ts"
+import { map, none, Option, some } from "fp-ts/lib/Option"
+import { constVoid, pipe } from "fp-ts/lib/function"
 
 import { Constant } from "@tob/backend/src/constant/constant"
 import { Log } from "@tob/backend/src/domain/bridge/log"
@@ -23,9 +22,10 @@ export function timerToggleSync(): boolean {
         const timer = setInterval(async (): Promise<void> => {
             const program = pipe(
                 ServiceBridge.sync(),
-                fold((error) => {
-                    throw error
-                }, of),
+                taskEither.foldW((error) => {
+                    Log.error("Sync timer run failed because: %o", error)
+                    return task.of(constVoid())
+                }, task.of),
             )
 
             const results = await program()
