@@ -77,7 +77,7 @@ export class OrbisWrapper {
         globalThis.localStorage = {
             getItem: (key: string) => Store.get(key),
             setItem: (key: string, data: string) => Store.set(key, data),
-            removeItem: (key: string) => Store.clear(key),
+            removeItem: (key: string) => Store.remove(key),
         }
     }
 
