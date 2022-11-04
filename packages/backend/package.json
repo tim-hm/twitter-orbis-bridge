@@ -28,7 +28,6 @@
     },
     "dependencies": {
         "@orbisclub/orbis-sdk": "^0.4.4-beta.10",
-        "@tob/common": "workspace:*",
         "@truffle/hdwallet-provider": "^2.1.0",
         "compression": "^1.7.4",
         "concurrently": "^7.5.0",
@@ -43,6 +42,8 @@
         "node-localstorage": "^2.2.1",
         "store2": "^2.14.2",
         "twitter-api-sdk": "^1.2.1",
-        "web3": "^1.8.0"
+        "web3": "^1.8.0",
+        "winston": "^3.8.2",
+        "zod": "^3.19.1"
     }
 }
